@@ -1,0 +1,4 @@
+module.exports={
+  MONGOURI:"YOUR URI FROM MONGODB",
+  JWT_SECRET:"YOUR PASSPHRASE"
+}
