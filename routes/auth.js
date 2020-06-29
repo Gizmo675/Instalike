@@ -1,8 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const router = express.Router()
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
-const router = express.Router()
 const requireLogin = require('../middleware/requireLogin')
 const User = mongoose.model("User")
 const {JWT_SECRET} =require('../keys')
@@ -66,9 +66,5 @@ router.post('/signin', (req,res)=>{
     })
   })
 })
-
-router.get('/protected',requireLogin, (req,res)=>{
-  res.send("Hello user")
-}) 
 
 module.exports = router
