@@ -4,6 +4,18 @@ const router = express.Router()
 const requireLogin = require('../middleware/requireLogin')
 const Post = mongoose.model("Post")
 
+// Create all post route
+router.get('/allpost', requireLogin, (req,res) =>{
+  Post.find()
+  .populate("author","_id name")
+  .then(posts=>{
+    res.json({posts})
+  })
+  .catch(err=>{
+    console.log(err)
+  })
+})
+
 //Create post route
 router.post('/createpost',requireLogin, (req,res)=>{
   const {title, body} = req.body
