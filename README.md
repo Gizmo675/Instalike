@@ -1,5 +1,8 @@
 # Instalike
 
+Le back est en NodeJS.
+Le front en ReactJS.
+
 # Francais :
 Bienvenue sur mon projet de clone d'Instagram.
 
