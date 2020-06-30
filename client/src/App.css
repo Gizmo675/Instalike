@@ -14,3 +14,27 @@
 .mycard{
   margin-top: 5em;
 }
+
+.profile-banner{
+  display: flex;
+  justify-content: space-around;
+  margin: 2em;
+  padding: 1em;
+}
+
+.profile-info{
+  display: flex;
+  justify-content: space-between;
+  width: 110%;
+}
+
+.gallery{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.item{
+  width: 30%;
+  margin-top: 2em;
+}
