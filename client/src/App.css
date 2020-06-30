@@ -4,6 +4,10 @@
   font-family: 'Grand Hotel', cursive;
 }
 
+.nav-wrapper{
+  margin: 0 1em;
+}
+
 .auth-card{
   padding: 10em;
   text-align: center;
@@ -37,4 +41,15 @@
 .item{
   width: 30%;
   margin-top: 2em;
+}
+
+.profile{
+  max-width: 75vw;
+  margin: 0 auto;
+}
+
+.profile-picture>img{
+  width: 15em;
+  height: 15em;
+  border-radius: 7.5em;
 }
