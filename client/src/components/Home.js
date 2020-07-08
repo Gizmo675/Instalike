@@ -11,7 +11,7 @@ const Home = () => {
         <div className="card-content">
           <i className="material-icons favorite">favorite</i>
           <h6>
-            title
+            Titre
           </h6>
           <p>
             This is my amazing post
@@ -27,7 +27,7 @@ const Home = () => {
         <div className="card-content">
           <i className="material-icons favorite">favorite</i>
           <h6>
-            title
+            Titre
           </h6>
           <p>
             This is my amazing post
@@ -43,7 +43,7 @@ const Home = () => {
         <div className="card-content">
           <i className="material-icons favorite">favorite</i>
           <h6>
-            title
+            Titre
           </h6>
           <p>
             This is my amazing post
