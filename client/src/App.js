@@ -5,9 +5,10 @@ import './App.css';
 // Components
 import Navbar from './components/Navbar'
 import Home from './components/Home'
-import Profile from './components/Profile'
+import Profil from './components/Profile'
 import Signup from './components/Signup'
 import Login from './components/Login'
+import CreatePost from './components/CreatePost'
 
 function App() {
   return (
@@ -19,11 +20,14 @@ function App() {
       <Route path="/Login">
         <Login />
       </Route>
-      <Route path="/Profile">
-        <Profile />
+      <Route path="/Profil">
+        <Profil />
       </Route>
       <Route path="/Signup">
         <Signup />
+      </Route>
+      <Route path="/CreatePost">
+        <CreatePost />
       </Route>
     </BrowserRouter>
   )

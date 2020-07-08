@@ -4,11 +4,15 @@
   font-family: 'Grand Hotel', cursive;
 }
 
+nav{
+  background-color: #34495E;
+}
+
 .nav-wrapper{
   margin: 0 1em;
 }
 
-.auth-card{
+.auth-card, .input-file{
   padding: 10em;
   text-align: center;
   margin: 10em auto;
@@ -55,7 +59,12 @@
 }
 
 .home-card{
-  max-width: 500px;
+  max-width: 50%;
   height: max-content;
-  margin: 5em auto;
+  margin: 3em auto;
+  padding: 0.5em;
+}
+
+.btn{
+  margin-top: 2em;
 }
