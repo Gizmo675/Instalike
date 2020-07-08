@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
+import M from 'materialize-css'
 
 const Signup = () => {
   const [name, setName] = useState("")
@@ -17,9 +18,12 @@ const Signup = () => {
         email:""
       })
     }).then(res=>res.json())
-    .then(data=>(
-      console.log(data)
-    ))
+    .then(data=>{
+      if(data.error){
+        M.toast({html: data.error, classes:"#ff5252 red accent-2"})
+      }
+    }
+    )
 
   }
 
