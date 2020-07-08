@@ -53,3 +53,9 @@
   height: 15em;
   border-radius: 7.5em;
 }
+
+.home-card{
+  max-width: 500px;
+  height: max-content;
+  margin: 5em auto;
+}
