@@ -25,6 +25,8 @@ const Login = () => {
         M.toast({html: data.error, classes:"#ff5252 red accent-2"});
         return console.log(data.error);
       } else{
+        localStorage.setItem("jwt", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
         M.toast({html:"Connecté !", classes:"#1de9b6 teal accent-3"});
         history.push('/');
       }
