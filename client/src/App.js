@@ -1,5 +1,5 @@
-import React from 'react';
-import {BrowserRouter, Route} from 'react-router-dom'
+import React, {useEffect, createContext, useReducer, useContext} from 'react';
+import {BrowserRouter, Route, Switch, useHistory} from 'react-router-dom';
 import './App.css';
 
 // Components
@@ -10,10 +10,30 @@ import Signup from './components/Signup'
 import Login from './components/Login'
 import CreatePost from './components/CreatePost'
 
-function App() {
+// reducers
+import {userReducer, initialState} from './reducers/userReducer'
+
+export const UserContext = createContext();
+
+const Routing = () => {
+
+  const history = useHistory();
+  const {state, dispatch} = useContext(UserContext);
+
+  useEffect(()=>{
+    // On recupere le profil utilisateur depuis localStorage
+    const user = JSON.parse(localStorage.getItem("user"))
+    // SI il n'y a pas d'utilisateur, alors on redirige vers login sinon vers la home
+    if(user){
+      dispatch({type:"USER", payload:user});
+      history.push('/');
+    }else{
+      history.push('/login');
+    }
+  },[]);
+
   return (
-    <BrowserRouter>
-      <Navbar />
+    <Switch>
       <Route exact path="/" >
         <Home />
       </Route>
@@ -29,7 +49,21 @@ function App() {
       <Route path="/createPost">
         <CreatePost />
       </Route>
-    </BrowserRouter>
+    </Switch>
+  )
+}
+
+function App() {
+
+  const [state, dispatch] = useReducer(userReducer, initialState);
+
+  return (
+    <UserContext.Provider value={{state, dispatch}}>
+      <BrowserRouter>
+        <Navbar />
+        <Routing />
+      </BrowserRouter>
+    </UserContext.Provider>
   )
 }
 

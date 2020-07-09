@@ -8,14 +8,14 @@ module.exports = (req,res,next)=>{
   console.log(req.headers)
 
   if(!authorization){
-    return res.status(401).json({err:"You must be logged in"})
+    return res.status(401).json({err:"Vous devez etre connecté"})
   }
   const token = authorization.replace("Bearer ","")
 
   jwt.verify(token,JWT_SECRET,(err,payload)=>{
     if(err){
       console.log(err)
-      return res.status(401).json({error:"You must be logged in"})
+      return res.status(401).json({error:"Vous devez etre connecté"})
     }
 
     const {_id} = payload

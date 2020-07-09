@@ -24,7 +24,7 @@ router.post('/createpost',requireLogin, (req,res)=>{
     return res.status(422).json({error:"Merci de remplir tous les champs"})
   }
 
-  // Don't show the password
+  // On masque le mot de passe
   req.user.password = undefined
 
   const post = new Post({
