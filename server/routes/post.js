@@ -19,6 +19,7 @@ router.get('/allpost', requireLogin, (req,res) =>{
 // Create post route
 router.post('/createpost',requireLogin, (req,res)=>{
   const {title, body, pic} = req.body
+  console.log(req.body)
   if(!title || !body || !pic){
     return res.status(422).json({error:"Merci de remplir tous les champs"})
   }
@@ -29,7 +30,7 @@ router.post('/createpost',requireLogin, (req,res)=>{
   const post = new Post({
     title,
     body,
-    pic,
+    picture:pic,
     author:req.user
   })
   post.save()
