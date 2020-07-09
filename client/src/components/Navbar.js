@@ -7,10 +7,10 @@ const Navbar = ()=>{
       <div className="nav-wrapper">
         <Link to="/" className="brand-logo left">Insta Like</Link>
         <ul id="nav-mobile" className="right">
-          <li><Link to="/Login">Login</Link></li>
-          <li><Link to="/Signup">Signup</Link></li>
-          <li><Link to="/Profil">Profil</Link></li>
-          <li><Link to="/CreatePost">Nouveau post</Link></li>
+          <li><Link to="/login">Login</Link></li>
+          <li><Link to="/signup">Signup</Link></li>
+          <li><Link to="/profil">Profil</Link></li>
+          <li><Link to="/createPost">Nouveau post</Link></li>
         </ul>
       </div>
     </nav>

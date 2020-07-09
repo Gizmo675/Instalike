@@ -3,21 +3,28 @@ const mongoose = require('mongoose')
 const router = express.Router()
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
-const requireLogin = require('../middleware/requireLogin')
-const User = mongoose.model("User")
 const {JWT_SECRET} =require('../keys')
+const { check, validationResult } = require('express-validator')
+
+// Model
+const User = mongoose.model("User")
+
+// Middleware
+const requireLogin = require('../middleware/requireLogin')
 
 // Signup route
 router.post('/signup', (req, res)=>{
-  const {name,email,password} = req.body
+  
+  const {name,email,password} = req.body;
+  
   if(!email || !password || !name){
-    return res.status(422).json({error:"Please add all the fields"})
+    return res.status(422).json({error:"Merci de remplir tous les champs"})
   }
 
   User.findOne({email:email})
   .then((savedUser)=>{
     if(savedUser){
-      return res.status(422).json({error:"User allready exist with that email"})
+      return res.status(422).json({error:"Un utilisateur existe deja avec cet email"})
     }
     bcrypt.hash(password, 20)
     .then(hashedPassword=>{
@@ -28,7 +35,7 @@ router.post('/signup', (req, res)=>{
       })
       user.save()
       .then(user=>{
-        res.json({message:"User successfuly saved"})
+        res.json({message:"Inscription réussi !"})
       })
       .catch(err=>{
         console.log(err)
@@ -44,7 +51,8 @@ router.post('/signup', (req, res)=>{
 router.post('/signin', (req,res)=>{
   const {email,password} = req.body
   if(!email || !password){
-    return res.status(422).json({error:"Please add email or password"})
+    console.log(req.body)
+    return res.status(422).json({error:"Merci de rentrer un mail et un mot de passe"})
   }
   User.findOne({email:email})
   .then(savedUser=>{
@@ -55,8 +63,8 @@ router.post('/signin', (req,res)=>{
     .then(doMatch=>{
       if(doMatch){
         const token = jwt.sign({_id:savedUser._id}, JWT_SECRET)
-        res.json({token})
-        console.log(savedUser)
+        const {_id, name, email} = savedUser;
+        res.json({token, user:{_id, name, email}});
       } else {
         return res.status(422).json({error:"Invalid email or password"})
       }

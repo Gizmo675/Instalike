@@ -17,16 +17,16 @@ function App() {
       <Route exact path="/" >
         <Home />
       </Route>
-      <Route path="/Login">
+      <Route path="/login">
         <Login />
       </Route>
-      <Route path="/Profil">
+      <Route path="/profil">
         <Profil />
       </Route>
-      <Route path="/Signup">
+      <Route path="/signup">
         <Signup />
       </Route>
-      <Route path="/CreatePost">
+      <Route path="/createPost">
         <CreatePost />
       </Route>
     </BrowserRouter>
