@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import M from 'materialize-css'
 
@@ -10,44 +10,50 @@ const CreatePost = ()=>{
   const [image, setImage] = useState("");
   const [url, setUrl] = useState("");
 
+  useEffect(()=>{
+    if(url){
+      fetch("/createpost",{
+        method:"post",
+        headers:{
+          "Content-Type":"application/json",
+          "Authorization":"Bearer "+localStorage.getItem("jwt")
+        },
+        body:JSON.stringify({
+          title,
+          body,
+          pic:url
+        })      
+      }).then(res=>res.json())
+      .then(data=>{
+        if(data.error){
+          M.toast({html: data.error, classes:"#ff5252 red accent-2"});
+          return console.log(data.error);
+        } else{
+          M.toast({html:"Post envoyé", classes:"#1de9b6 teal accent-3"});
+          history.push('/');
+        }
+      }).catch(err=>{
+        console.log(err)
+      })
+    }
+  },[url])
+
   const postDetails = ()=>{
     const data = new FormData();
     data.append("file", image);
     data.append("upload_preset", "InstaLike");
     data.append("cloud_name","gizmo675");
+
     fetch("	https://api.cloudinary.com/v1_1/gizmo675/image/upload",{
       method:"post",
       body:data
     })
     .then(res=>res.json())
     .then(data=>{
+      console.log(data.url)
       setUrl(data.url)
     })
     .catch(err=>{
-      console.log(err)
-    })
-
-    fetch("/createpost",{
-      method:"post",
-      headers:{
-        "Content-Type":"application/json",
-        "Authorization":"Bearer "+localStorage.getItem("jwt")
-      },
-      body:JSON.stringify({
-        title,
-        body,
-        pic:url
-      })      
-    }).then(res=>res.json())
-    .then(data=>{
-      if(data.error){
-        M.toast({html: data.error, classes:"#ff5252 red accent-2"});
-        return console.log(data.error);
-      } else{
-        M.toast({html:"Post envoyé", classes:"#1de9b6 teal accent-3"});
-        history.push('/');
-      }
-    }).catch(err=>{
       console.log(err)
     })
   }
