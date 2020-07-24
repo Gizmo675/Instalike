@@ -1,0 +1,34 @@
+.profile-banner{
+  display: flex;
+  justify-content: space-around;
+  margin: 2em;
+  padding: 1em;
+}
+
+.profile-info{
+  display: flex;
+  justify-content: space-between;
+  width: 110%;
+}
+
+.gallery{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.item{
+  width: 30%;
+  margin-top: 2em;
+}
+
+.profile{
+  max-width: 75vw;
+  margin: 2em auto;
+}
+
+.profile-picture>img{
+  width: 15em;
+  height: 15em;
+  border-radius: 7.5em;
+}

@@ -1,17 +1,18 @@
 import React, {useContext} from 'react'
 import {Link, useHistory} from 'react-router-dom'
-import {UserContext} from '../App'
+import {UserContext} from '../../App'
+import "./navbar.css"
 
 const Navbar = ()=>{
   const { state,dispatch } = useContext(UserContext);
   const history = useHistory();
-  const renderList = ()=>{
 
+  const renderList = ()=>{
     if(state){
       return [
         <li><Link to="/profil">Profil</Link></li>,
         <li><Link to="/createPost">Nouveau post</Link></li>,
-        <li>
+        
           <button
             className="btn waves-effect waves-light red lighten-3"
             type="submit"
@@ -24,7 +25,6 @@ const Navbar = ()=>{
           >
             Deconnexion
           </button>
-      </li>
       ]
     }else{
       return[

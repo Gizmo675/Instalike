@@ -8,7 +8,7 @@ import Home from './components/Home'
 import Profil from './components/Profile'
 import Signup from './components/Signup'
 import Login from './components/Login'
-import CreatePost from './components/CreatePost'
+import CreatePost from './components/Createpost'
 
 // reducers
 import {userReducer, initialState} from './reducers/userReducer'

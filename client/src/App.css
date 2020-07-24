@@ -4,14 +4,6 @@
   font-family: 'Grand Hotel', cursive;
 }
 
-nav{
-  background-color: #34495E;
-}
-
-.nav-wrapper{
-  margin: 0 1em;
-}
-
 .auth-card, .input-file{
   padding: 10em;
   text-align: center;
@@ -19,51 +11,9 @@ nav{
   max-width: 50em;
 }
 
-.mycard{
+/* .mycard{
   margin-top: 5em;
-}
-
-.profile-banner{
-  display: flex;
-  justify-content: space-around;
-  margin: 2em;
-  padding: 1em;
-}
-
-.profile-info{
-  display: flex;
-  justify-content: space-between;
-  width: 110%;
-}
-
-.gallery{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.item{
-  width: 30%;
-  margin-top: 2em;
-}
-
-.profile{
-  max-width: 75vw;
-  margin: 2em auto;
-}
-
-.profile-picture>img{
-  width: 15em;
-  height: 15em;
-  border-radius: 7.5em;
-}
-
-.home-card{
-  max-width: 50%;
-  height: max-content;
-  margin: 3em auto;
-  padding: 0.5em;
-}
+} */
 
 .btn{
   margin-top: 2em;
