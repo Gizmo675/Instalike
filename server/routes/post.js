@@ -8,6 +8,7 @@ const Post = mongoose.model("Post")
 router.get('/allpost', requireLogin, (req,res) =>{
   Post.find()
   .populate("author","_id name")
+  .populate("comments.author","_id name")
   .then(posts=>{
     res.json({posts})
   })
@@ -92,7 +93,8 @@ router.put('/comment', requireLogin, (req,res)=>{
     $push:{comments:comment}
   },{
     new:true
-  }).populate("comment.author","_id name")  
+  }).populate("comments.author","_id name")
+    .populate("author","_id name")
     .exec((err,result)=>{
       if(err){
         return res.status(422).json({error:error})

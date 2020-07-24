@@ -72,7 +72,7 @@ const Home = () => {
   }
 
   const makeComment = (text,postId)=>{
-    fetch('/comment'),{
+    fetch('/comment',{
       method:"put",
       headers:{
         "Content-Type":"application/json",
@@ -82,7 +82,20 @@ const Home = () => {
         postId,
         text
       })
-    }
+    }).then(res=>res.json())
+      .then(result=>{
+        console.log(result)
+        const newData = data.map(item=>{
+          if(item._id==result._id){
+            return result
+          }else{
+            return item
+          }
+        })
+        SetData(newData)
+      }).catch(err=>{
+        console.log(err)
+      })
   }
 
   return (
@@ -119,9 +132,21 @@ const Home = () => {
             <p>
               {item.body}
             </p>
+            {
+              item.comments.map(record=>{
+                return(
+                  <h6 key={record._id}>
+                    <span>
+                      {record.author.name}
+                    </span>
+                    {record.text}
+                  </h6>
+                )
+              })
+            }
             <form onSubmit={(e)=>{
               e.preventDefault()
-              console.log(e.target)
+              makeComment(e.target[0].value, item._id)
             }}>
               <input type="text" placeholder="Ajouter un commentaire" />
             </form>
