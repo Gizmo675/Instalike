@@ -4,7 +4,7 @@ import './profile.css'
 
 const Profile = () => {
 
-const {state, dispatch} = useContext(UserContext)
+const {state} = useContext(UserContext)
 
 const [mypics, setPics] = useState([]);
 

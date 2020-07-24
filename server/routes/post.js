@@ -4,7 +4,7 @@ const router = express.Router()
 const requireLogin = require('../middleware/requireLogin')
 const Post = mongoose.model("Post")
 
-// Create all post route
+// On veut l'ensemble des post
 router.get('/allpost', requireLogin, (req,res) =>{
   Post.find()
   .populate("author","_id name")
@@ -16,7 +16,7 @@ router.get('/allpost', requireLogin, (req,res) =>{
   })
 })
 
-// Create post route
+// On veut créer un post
 router.post('/createpost', requireLogin, (req,res)=>{
   const {title, body, pic} = req.body
   console.log(req.body)
@@ -42,7 +42,7 @@ router.post('/createpost', requireLogin, (req,res)=>{
     })
 })
 
-// Create all post from one user
+// On veut recuperer l'ensemble des posts d'un utilisateur
 router.get('/mypost', requireLogin, (req,res)=>{
   Post.find({author:req.user._id})
   .populate("author","_id name")
@@ -51,6 +51,34 @@ router.get('/mypost', requireLogin, (req,res)=>{
   })
   .catch(err=>{
     console.log(err)
+  })
+})
+
+router.put('/like', requireLogin, (req,res)=>{
+  Post.findByIdAndUpdate(req.body.postId,{
+    $push:{likes:req.user._id}
+  },{
+    new:true
+  }).exec((err,result)=>{
+    if(err){
+      return res.status(422).json({error:error})
+    }else{
+      res.json(result)
+    }
+  })
+})
+
+router.put('/unlike', requireLogin, (req,res)=>{
+  Post.findByIdAndUpdate(req.body.postId,{
+    $pull:{likes:req.user._id}
+  },{
+    new:true
+  }).exec((err,result)=>{
+    if(err){
+      return res.status(422).json({error:error})
+    }else{
+      res.json(result)
+    }
   })
 })
 
