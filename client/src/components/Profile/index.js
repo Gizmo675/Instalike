@@ -1,7 +1,10 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
+import {UserContext} from '../../App'
 import './profile.css'
 
 const Profile = () => {
+
+const {state, dispatch} = useContext(UserContext)
 
 const [mypics, setPics] = useState([]);
 
@@ -27,7 +30,7 @@ useEffect(()=>{
           />
         </div>
         <div>
-          <h4>Gizmo</h4>
+        <h4>{state?state.name:"Chargement"}</h4>
           <div className="profile-info">
             <h6>10 posts</h6>
             <h6>450 followers</h6>

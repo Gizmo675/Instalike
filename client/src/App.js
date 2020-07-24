@@ -26,7 +26,6 @@ const Routing = () => {
     // SI il n'y a pas d'utilisateur, alors on redirige vers login sinon vers la home
     if(user){
       dispatch({type:"USER", payload:user});
-      history.push('/');
     }else{
       history.push('/login');
     }
