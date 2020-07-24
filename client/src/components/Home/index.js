@@ -4,6 +4,7 @@ import './home.css'
 const Home = () => {
 
   const [data,SetData] = useState([]);
+  
   useEffect(()=>{
     fetch('/allpost',{
       headers:{
