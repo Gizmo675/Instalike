@@ -17,7 +17,7 @@ router.get('/allpost', requireLogin, (req,res) =>{
 })
 
 // Create post route
-router.post('/createpost',requireLogin, (req,res)=>{
+router.post('/createpost', requireLogin, (req,res)=>{
   const {title, body, pic} = req.body
   console.log(req.body)
   if(!title || !body || !pic){
