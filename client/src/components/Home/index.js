@@ -71,6 +71,20 @@ const Home = () => {
       })
   }
 
+  const makeComment = (text,postId)=>{
+    fetch('/comment'),{
+      method:"put",
+      headers:{
+        "Content-Type":"application/json",
+        "Authorization":"Bearer "+localStorage.getItem("jwt")
+      },
+      body:JSON.stringify({
+        postId,
+        text
+      })
+    }
+  }
+
   return (
     <div className="home">
 
@@ -105,7 +119,12 @@ const Home = () => {
             <p>
               {item.body}
             </p>
-            <input type="text" placeholder="Ajouter un commentaire" />
+            <form onSubmit={(e)=>{
+              e.preventDefault()
+              console.log(e.target)
+            }}>
+              <input type="text" placeholder="Ajouter un commentaire" />
+            </form>
           </div>
       </div>
         )
