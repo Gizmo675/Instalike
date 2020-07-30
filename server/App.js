@@ -40,6 +40,7 @@ mongoose.connection.on('error', (err)=>{
 // Models
 require('./models/user')
 require('./models/post')
+require('./models/user')
 
 app.use(express.json())
 

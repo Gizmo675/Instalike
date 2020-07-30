@@ -20,7 +20,7 @@ router.get('/allpost', requireLogin, (req,res) =>{
 // On veut créer un post
 router.post('/createpost', requireLogin, (req,res)=>{
   const {title, body, pic} = req.body
-  console.log(req.body)
+  // console.log(req.body)
   if(!title || !body || !pic){
     return res.status(422).json({error:"Merci de remplir tous les champs"})
   }
@@ -116,6 +116,26 @@ router.delete('/deletepost/:postId', requireLogin, (req,res)=>{
     }
     if(post.author._id.toString() === req.user._id.toString()){
       post.remove()
+      .then(result=>{
+        res.json(result)
+      }).catch(err=>{
+        console.log(err)
+      })
+    }
+  })
+})
+
+// On veut supprimer un commentaire
+router.delete('/deleteComment/:commentId', requireLogin, (req,res)=>{
+  console.log(req.params)
+  Post.findOne(req.params.commentId)
+  .populate("author", "_id")
+  .exec((err,comments)=>{
+    if(err || !comments){
+      return res.status(422).json({error:err})
+    }
+    if(comments.author._id.toString() === req.user._id.toString()){
+      comments.remove()
       .then(result=>{
         res.json(result)
       }).catch(err=>{
