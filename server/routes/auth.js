@@ -51,7 +51,7 @@ router.post('/signup', (req, res)=>{
 router.post('/signin', (req,res)=>{
   const {email,password} = req.body
   if(!email || !password){
-    console.log(req.body)
+    //console.log(req.body)
     return res.status(422).json({error:"Merci de rentrer un mail et un mot de passe"})
   }
   User.findOne({email:email})

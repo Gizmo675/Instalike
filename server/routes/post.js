@@ -55,6 +55,7 @@ router.get('/mypost', requireLogin, (req,res)=>{
   })
 })
 
+// On veut gerer les likes d'un post
 router.put('/like', requireLogin, (req,res)=>{
   Post.findByIdAndUpdate(req.body.postId,{
     $push:{likes:req.user._id}
@@ -69,6 +70,7 @@ router.put('/like', requireLogin, (req,res)=>{
   })
 })
 
+// On veut gerer le unlike d'un post
 router.put('/unlike', requireLogin, (req,res)=>{
   Post.findByIdAndUpdate(req.body.postId,{
     $pull:{likes:req.user._id}
@@ -83,7 +85,7 @@ router.put('/unlike', requireLogin, (req,res)=>{
   })
 })
 
-
+// On veut ajouter un commentaire
 router.put('/comment', requireLogin, (req,res)=>{
   const comment = {
     text:req.body.text,
@@ -102,6 +104,25 @@ router.put('/comment', requireLogin, (req,res)=>{
         res.json(result)
       }
     })
+})
+
+// On veut supprimer un post
+router.delete('/deletepost/:postId', requireLogin, (req,res)=>{
+  Post.findOne({_id:req.params.postId})
+  .populate("author", "_id")
+  .exec((err,post)=>{
+    if(err || !post){
+      return res.status(422).json({error:err})
+    }
+    if(post.author._id.toString() === req.user._id.toString()){
+      post.remove()
+      .then(result=>{
+        res.json(result)
+      }).catch(err=>{
+        console.log(err)
+      })
+    }
+  })
 })
 
 module.exports = router
