@@ -41,8 +41,9 @@ const CreatePost = () => {
   const postDetails = () => {
     const data = new FormData()
     data.append('file', image)
-    data.append('upload_preset', 'InstaLike')
+    data.append('upload_preset', 'instagram')
     data.append('cloud_name', 'gizmo675')
+    console.log(image)
 
     fetch('	https://api.cloudinary.com/v1_1/gizmo675/image/upload', {
       method: 'post',
@@ -76,7 +77,10 @@ const CreatePost = () => {
       <div className="file-field input-field">
         <div className="btn waves-effect waves-light blue-grey">
           <span>Photo</span>
-          <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+          <input
+            type="file"
+            onChange={(e) => setImage(e.target.files[0])}
+          />
         </div>
         <div className="file-path-wrapper">
           <input className="file-path validate" type="text" />

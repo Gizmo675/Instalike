@@ -1,6 +1,11 @@
-.home-card{
+.home-card {
   max-width: 50%;
   height: max-content;
   margin: 3em auto;
   padding: 0.5em;
+}
+
+.card-content i {
+  cursor: pointer;
+  margin-right: 1em;
 }

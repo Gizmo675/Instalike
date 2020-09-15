@@ -128,7 +128,7 @@ const Home = () => {
         return (
           <div className="card home-card" key={item._id}>
             <h5>
-              {item.author.name}
+              {/* {item.author.name}
               {item.author._id === state._id && (
                 <i
                   className="material-icons delete"
@@ -137,7 +137,7 @@ const Home = () => {
                 >
                   delete
                 </i>
-              )}
+              )} */}
             </h5>
             <div className="card-image">
               <img src={item.picture} alt={item._id} />
@@ -154,15 +154,15 @@ const Home = () => {
                   thumb_down
                 </i>
               ) : (
-                <i
-                  className="material-icons"
-                  onClick={() => {
-                    likePost(item._id)
-                  }}
-                >
-                  thumb_up
-                </i>
-              )}
+                  <i
+                    className="material-icons"
+                    onClick={() => {
+                      likePost(item._id)
+                    }}
+                  >
+                    thumb_up
+                  </i>
+                )}
               <h6> {item.likes.length} like </h6>
               <h6>{item.title}</h6>
               <p>{item.body}</p>
